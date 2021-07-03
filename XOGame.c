@@ -4,10 +4,9 @@
 
 //2D array containing game data
 static char game[3][3]={{IDLE_SYMBOL,IDLE_SYMBOL,IDLE_SYMBOL},
-                 {IDLE_SYMBOL,IDLE_SYMBOL,IDLE_SYMBOL},
-                 {IDLE_SYMBOL,IDLE_SYMBOL,IDLE_SYMBOL}};
+                        {IDLE_SYMBOL,IDLE_SYMBOL,IDLE_SYMBOL},
+                        {IDLE_SYMBOL,IDLE_SYMBOL,IDLE_SYMBOL}};
 
-char  move_counter=0;
 
 /***************************** Functions ************************************/
 void clear_board(char board[][3])
@@ -40,7 +39,7 @@ void print_game(char game[][3],char turn, char x_score,char o_score)
 
 char check_win_state(char game[][3], char turn, char *x_score, char *o_score)
 {
-    char win_flag=0;
+    char win_flag=0,Empty_flag=0;
 
     if (DIAGONAL_LINE1_CHECK || DIAGONAL_LINE2_CHECK)
     {
@@ -56,9 +55,21 @@ char check_win_state(char game[][3], char turn, char *x_score, char *o_score)
         }
     }
 
-    if (!win_flag && move_counter>8)
+    if (!win_flag)
     {
-        win_flag= END_STALEMATE;
+        for (int i=0;i<9;i++)
+        {
+            if (game[0][i] == IDLE_SYMBOL)
+            {
+                Empty_flag=1;
+                break;
+            }
+        }
+    }
+
+    if (!win_flag && !Empty_flag)
+    {
+        win_flag = END_STALEMATE;
     }
     else if (win_flag)
     {
@@ -86,7 +97,6 @@ char play_turn(char game[][3],char square_num,char turn)
     {
         if (turn==X_TURN)       game[x][y]='X';
         else if (turn==O_TURN)  game[x][y]='O';
-        move_counter++;
         return 1;
     }
     return 0;
@@ -149,7 +159,6 @@ void play_game(void)
             print_end_msg(end_flag);
             clear_board(game);
             turn = !turn;
-            move_counter=0;
             play_flag=0;
             end_flag=0;
         }
