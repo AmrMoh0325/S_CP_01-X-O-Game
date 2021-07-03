@@ -1,5 +1,10 @@
 # depslib dependency file v1.0
-1625317099 source:d:\sprints\sprint 2\xo_game\main.c
+1625329977 source:d:\sprints\sprint 2\xo_game\main.c
+	<stdio.h>
+	<stdlib.h>
+	"XOGame.h"
+
+1625332112 d:\sprints\sprint 2\xo_game\xogame.h
 	<stdio.h>
 	<stdlib.h>
 

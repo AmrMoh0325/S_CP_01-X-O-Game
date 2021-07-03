@@ -75,8 +75,8 @@ char check_win_state(char game[][3], char turn, char *x_score, char *o_score)
 
 char play_turn(char game[][3],char square_num,char turn)
 {
-    char x=(square_num-1)/3;
-    char y=(square_num-1)%3;
+    int x=(square_num-1)/3;
+    int y=(square_num-1)%3;
 
     if (game[x][y] == IDLE_SYMBOL)
     {
@@ -111,7 +111,8 @@ void print_end_msg(char game_state)
 void play_game(void)
 {
     char turn=X_TURN,x_score=0,o_score=0;
-    char input=0,play_flag=0,win_flag=0, move_counter=0;
+    char play_flag=0,win_flag=0, move_counter=0;
+    int input=0;
     clear_board(game);
     while (1)
     {
