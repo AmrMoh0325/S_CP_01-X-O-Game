@@ -95,8 +95,8 @@ char play_turn(char game[][3],char square_num,char turn)
 
     if (game[x][y] == IDLE_SYMBOL)
     {
-        if (turn==X_TURN)       game[x][y]='X';
-        else if (turn==O_TURN)  game[x][y]='O';
+        if (turn==X_TURN)       game[x][y]=P1_SYMBOL;
+        else if (turn==O_TURN)  game[x][y]=P2_SYMBOL;
         return 1;
     }
     return 0;

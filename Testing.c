@@ -61,7 +61,7 @@ test_t TEST_O_PLAYER_WIN (void)
 
 
     char x_score=0, o_score=0;
-    char t=check_win_state(test_game,O_TURN,&x_score,&o_score);
+    char t=check_win_state(test_game,X_TURN,&x_score,&o_score);
     if (t==END_P2_WIN && x_score==0 && o_score==1)    return G_OK;
     return G_ERROR;
 }
