@@ -7,7 +7,7 @@ static char game[3][3]={{IDLE_SYMBOL,IDLE_SYMBOL,IDLE_SYMBOL},
                  {IDLE_SYMBOL,IDLE_SYMBOL,IDLE_SYMBOL},
                  {IDLE_SYMBOL,IDLE_SYMBOL,IDLE_SYMBOL}};
 
-
+char  move_counter=0;
 
 /***************************** Functions ************************************/
 void clear_board(char board[][3])
@@ -56,7 +56,11 @@ char check_win_state(char game[][3], char turn, char *x_score, char *o_score)
         }
     }
 
-    if (win_flag)
+    if (!win_flag && move_counter>8)
+    {
+        win_flag= END_STALEMATE;
+    }
+    else if (win_flag)
     {
         if (turn==X_TURN)
         {
@@ -82,6 +86,7 @@ char play_turn(char game[][3],char square_num,char turn)
     {
         if (turn==X_TURN)       game[x][y]='X';
         else if (turn==O_TURN)  game[x][y]='O';
+        move_counter++;
         return 1;
     }
     return 0;
@@ -91,16 +96,20 @@ void print_end_msg(char game_state)
 {
     switch(game_state)
     {
-    case END_STALEMATE:
-        printf("\n\tStalemate!\n\n");
-        break;
     case END_P1_WIN:
         printf("\n\tPlayer X Wins!\n\n");
-
         break;
     case END_P2_WIN:
         printf("\n\tPlayer O Wins!\n\n");
         break;
+    case END_STALEMATE:
+        printf("\n\tStalemate!\n\n");
+        break;
+    default:
+        break;
+
+
+
     }
     printf("\tPress Any Key");
     getchar();
@@ -111,7 +120,7 @@ void print_end_msg(char game_state)
 void play_game(void)
 {
     char turn=X_TURN,x_score=0,o_score=0;
-    char play_flag=0,win_flag=0, move_counter=0;
+    char play_flag=0,end_flag=0;
     int input=0;
     clear_board(game);
     while (1)
@@ -126,8 +135,7 @@ void play_game(void)
             play_flag=play_turn(game,input,turn);
             if (play_flag)
             {
-                move_counter++;
-                win_flag=check_win_state(game,turn,&x_score,&o_score);
+                end_flag=check_win_state(game,turn,&x_score,&o_score);
             }
             else    continue;
 
@@ -135,21 +143,20 @@ void play_game(void)
         else if(input==0)       break;
         else                    continue;
 
-        if (win_flag || move_counter>8)
+        if (end_flag)
         {
             print_game(game,turn,x_score,o_score);
-            print_end_msg(win_flag);
+            print_end_msg(end_flag);
             clear_board(game);
             turn = !turn;
             move_counter=0;
             play_flag=0;
-            win_flag=0;
-
+            end_flag=0;
         }
         else
         {
-                play_flag=0;
-                turn = !turn;
+            play_flag=0;
+            turn = !turn;
         }
     }
 }

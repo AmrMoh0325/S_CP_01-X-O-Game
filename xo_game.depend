@@ -4,7 +4,10 @@
 	<stdlib.h>
 	"XOGame.h"
 
-1625332112 d:\sprints\sprint 2\xo_game\xogame.h
+1625333290 d:\sprints\sprint 2\xo_game\xogame.h
 	<stdio.h>
 	<stdlib.h>
+
+1625333706 source:d:\sprints\sprint 2\xo_game\xogame.c
+	"XOGame.h"
 

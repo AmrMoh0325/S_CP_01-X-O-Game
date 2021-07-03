@@ -16,9 +16,10 @@
 #define O_TURN      1
 
 //game states indicators
-#define END_STALEMATE   0
+#define IN_PROGRESS     0
 #define END_P1_WIN      1
 #define END_P2_WIN      2
+#define END_STALEMATE   3
 
 // check conditions for each row, column and diagonal line
 #define HORIZONTAL_LINE_CHECK(x)     ((game[x][0] !=IDLE_SYMBOL) && (game[x][0] == game[x][1]) && (game[x][1] == game[x][2]))
