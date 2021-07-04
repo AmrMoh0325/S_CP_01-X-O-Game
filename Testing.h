@@ -27,8 +27,8 @@ test_t TEST_X_PLAYER_WIN (void);
 //tests if 3 consecutive x's can lead o player to win
 test_t TEST_O_PLAYER_WIN (void);
 
-//tests if the board is full and no one won can lead to stalemate
-test_t TEST_STALEMATE (void);
+//tests if the board is full and no one won can lead to DRAW
+test_t TEST_DRAW (void);
 
 //tests if a move in a valid location can apply
 test_t TEST_VALID_MOVE (void);

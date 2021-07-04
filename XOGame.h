@@ -19,7 +19,7 @@
 #define IN_PROGRESS     0
 #define END_P1_WIN      1
 #define END_P2_WIN      2
-#define END_STALEMATE   3
+#define END_DRAW   3
 
 // check conditions for each row, column and diagonal line
 #define HORIZONTAL_LINE_CHECK(x)     ((game[x][0] !=IDLE_SYMBOL) && (game[x][0] == game[x][1]) && (game[x][1] == game[x][2]))
@@ -44,7 +44,7 @@ char check_win_state(char game[][3], char turn, char *x_score, char *o_score);
 //checks if the position the player selected is valid, if so, applys the move
 char play_turn(char game[][3],char square_num,char turn);
 
-//prints the ending message declaring a player win or a stalemate
+//prints the ending message declaring a player win or a DRAW
 void print_end_msg(char game_state);
 
 // runs the game

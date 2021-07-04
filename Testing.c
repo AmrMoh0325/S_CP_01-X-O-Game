@@ -61,12 +61,12 @@ test_t TEST_O_PLAYER_WIN (void)
 
 
     char x_score=0, o_score=0;
-    char t=check_win_state(test_game,X_TURN,&x_score,&o_score);
+    char t=check_win_state(test_game,O_TURN,&x_score,&o_score);
     if (t==END_P2_WIN && x_score==0 && o_score==1)    return G_OK;
     return G_ERROR;
 }
 
-test_t TEST_STALEMATE (void)
+test_t TEST_DRAW (void)
 {
     char test_game[3][3]={{P2_SYMBOL,P1_SYMBOL,P1_SYMBOL},
                           {P1_SYMBOL,P2_SYMBOL,P2_SYMBOL},
@@ -75,7 +75,7 @@ test_t TEST_STALEMATE (void)
 
     char x_score=0, o_score=0;
     char t=check_win_state(test_game,X_TURN,&x_score,&o_score);
-    if (t==END_STALEMATE && x_score==0 && o_score==0)    return G_OK;
+    if (t==END_DRAW && x_score==0 && o_score==0)    return G_OK;
     return G_ERROR;
 }
 
@@ -123,13 +123,13 @@ void testing_APP(void)
                             TEST_D_LINE_WIN,
                             TEST_X_PLAYER_WIN,
                             TEST_O_PLAYER_WIN,
-                            TEST_STALEMATE,
+                            TEST_DRAW,
                             TEST_VALID_MOVE,
                             TEST_INVALID_MOVE,
                             play_game};
 
     system("cls");
-    printf("\tTESTING XO GAME\n\n1-TEST HORIZONTAL LINE WIN\n2-TEST VERTICAL LINE WIN\n3-TEST DIAGONAL LINE WIN\n4-TEST X PLAYER WIN\n5-TEST O PLAYER WIN\n6-TEST STALEMATE\n7-TEST VALID MOVE\n8-TEST INVALID MOVE\n9-RUN ALL TESTS\n10-Run Game\n0-EXIT\n\n\n");
+    printf("\tTESTING XO GAME\n\n1-TEST HORIZONTAL LINE WIN\n2-TEST VERTICAL LINE WIN\n3-TEST DIAGONAL LINE WIN\n4-TEST X PLAYER WIN\n5-TEST O PLAYER WIN\n6-TEST DRAW\n7-TEST VALID MOVE\n8-TEST INVALID MOVE\n9-RUN ALL TESTS\n10-Run Game\n0-EXIT\n\n\n");
 
 
     while (1)

@@ -69,7 +69,7 @@ char check_win_state(char game[][3], char turn, char *x_score, char *o_score)
 
     if (!win_flag && !Empty_flag)
     {
-        win_flag = END_STALEMATE;
+        win_flag = END_DRAW;
     }
     else if (win_flag)
     {
@@ -107,13 +107,13 @@ void print_end_msg(char game_state)
     switch(game_state)
     {
     case END_P1_WIN:
-        printf("\n\tPlayer X Wins!\n\n");
+        printf("\n    Player X Wins!\n\n");
         break;
     case END_P2_WIN:
-        printf("\n\tPlayer O Wins!\n\n");
+        printf("\n    Player O Wins!\n\n");
         break;
-    case END_STALEMATE:
-        printf("\n\tStalemate!\n\n");
+    case END_DRAW:
+        printf("\n\tDarw!\n\n");
         break;
     default:
         break;
@@ -121,7 +121,7 @@ void print_end_msg(char game_state)
 
 
     }
-    printf("\tPress Any Key");
+    printf("    Press Any Key");
     getchar();
     getchar();
 }
@@ -130,12 +130,17 @@ void print_end_msg(char game_state)
 void play_game(void)
 {
     char turn=X_TURN,x_score=0,o_score=0;
-    char play_flag=0,end_flag=0;
+    char play_flag=0,end_flag=0,error_flag=0;
     int input=0;
     clear_board(game);
     while (1)
     {
         print_game(game,turn,x_score,o_score);
+        if (error_flag)
+        {
+            printf("\nInvalid location, Try again\n\n ");
+            error_flag=0;
+        }
         printf("\t%s\n\n\nEnter Square Number (1~9) or (0:quit) : ",((turn== X_TURN)? "X TURN" : "O TURN"));
         fflush(stdin);
         scanf("%d", &input);
@@ -147,11 +152,18 @@ void play_game(void)
             {
                 end_flag=check_win_state(game,turn,&x_score,&o_score);
             }
-            else    continue;
-
+            else
+            {
+                error_flag=1;
+                continue;
+            }
         }
         else if(input==0)       break;
-        else                    continue;
+        else
+        {
+            error_flag=1;
+            continue;
+        }
 
         if (end_flag)
         {
