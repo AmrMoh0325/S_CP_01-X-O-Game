@@ -1,6 +1,6 @@
 /*****************************************************************************
 * Task: X-O Game
-* File Name: XOGame.h
+* File Name: XOGame.c
 * Description: Source file for X-O Game Task
 * Author: Amr Mohamed
 * Date: 3/7/2021

@@ -12,7 +12,7 @@ int main()
     testing_APP();
     #endif
 
-    #ifdef    APP
+    #ifdef      APP
     //run this if you want to directly play the game
     play_game();
     #endif // APP
